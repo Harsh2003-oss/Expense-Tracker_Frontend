@@ -10,7 +10,19 @@ const response = await axios.post('http://localhost:3000/auth/login',{
 })  
 return response.data  
 } catch (error) {
-throw error.response.data
-    
+throw error.response.data   
 }
+}
+
+export const registerUser = async(name,email,password) =>{
+    try {
+        const response = await axios.post('http://localhost:3000/auth/register',{
+            name,
+            email,
+            password
+        })
+        return response.data
+    } catch (error) {
+        throw error.response.data
+    }
 }
