@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
+import { loginUser } from '../api';
 
 const Login = () => {
-const[username,setUserName] = useState("");
+const[email,setemail] = useState("");
 const [password,setPassword] = useState("")
 
-const submitHandler =(e) =>{
+const submitHandler =async (e) =>{
 e.preventDefault()
-console.log(username)
-console.log(password)
+
+try {
+  const result = await loginUser(email , password)
+    console.log('success' , result)
+
+} catch (error) { 
+  console.log('error',error)
+}
 }
   return (
     <>
@@ -23,9 +30,9 @@ console.log(password)
 
 <input
 className='p-2 border-zinc-100 mb-4 border-2 rounded-4xl  '
-value={username}
-onChange={(e)=>setUserName(e.target.value)}
-type="text" placeholder='Enter your name' />
+value={email}
+onChange={(e)=>setemail(e.target.value)}
+type="email" placeholder='Enter your email' />
 
 <input
 className='p-2 border-zinc-100 border-2 rounded-4xl   '
